@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> arrayRankTransform(vector<int>& arr) {
+
+        vector<int> sorted = arr;
+        sort(sorted.begin(), sorted.end());
+
+        map<int, int> rank;
+        int curRank = 1;
+
+        for (int x : sorted) {
+            // Assign rank only the first time we see a value.
+            if (!rank.count(x))
+                rank[x] = curRank++;
+        }
+
+        vector<int> ans;
+
+        for (int x : arr)
+            ans.push_back(rank[x]);
+
+        return ans;
+    }
+};
